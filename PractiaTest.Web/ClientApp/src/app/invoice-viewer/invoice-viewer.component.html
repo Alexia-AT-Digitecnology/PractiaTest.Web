@@ -1,3 +1,39 @@
-<p>
-  invoice-viewer works!
-</p>
+<h1>Invoice Page</h1>
+<p *ngIf="!invoice"><em>{{ connectionStatus }}</em></p>
+
+<div *ngIf="invoice">
+  <p class="font-weight-bold">Client name: {{ invoice.clientName }}</p>
+  <p class="font-weight-bold">Issue date: {{ invoice.issueDate | date }}</p>
+  <p class="font-weight-bold">Paid: {{ invoice.paid ? 'Yes' : 'No' }}</p>
+
+  <h2>Invoice Details</h2>
+
+  <table class='table table-striped'>
+    <thead>
+    <tr>
+      <th>Product name</th>
+      <th>Amount</th>
+      <th>Sell price</th>
+      <th>Total</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let invoiceDetail of invoice.invoiceDetails">
+      <td>{{ invoiceDetail.productName }}</td>
+      <td>{{ invoiceDetail.amount }}</td>
+      <td>{{ invoiceDetail.sellPrice | currency:'USD':'symbol':'1.2-2' }}</td>
+      <td>{{ invoiceDetail.total | currency:'USD':'symbol':'1.2-2' }}</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <p class="font-weight-bold">Total: {{ invoice.total | currency:'USD':'symbol':'1.2-2' }}</p>
+</div>
+<div class='card-footer'>
+  <button class='btn btn-outline-secondary'
+          (click)='onBack()'
+          style='width:80px'>
+    <i class='fa fa-chevron-left'></i> Back
+  </button>
+</div>
+

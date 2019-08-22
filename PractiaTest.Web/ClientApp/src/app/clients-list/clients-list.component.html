@@ -1,3 +1,27 @@
-<p>
-  clients-list works!
-</p>
+<h1>Client List</h1>
+<p *ngIf="clients.length == 0"><em>{{ connectionStatus }}</em></p>
+
+<table class='table table-striped' *ngIf="clients.length > 0">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Born date</th>
+    <th>Phone number</th>
+    <th>Email</th>
+    <th>Has 10% discount?</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let client of clients">
+    <td><a [routerLink]="['/client-viewer', client.id]">
+      {{ client.name }}
+    </a></td>
+    <td>{{ client.address }}</td>
+    <td>{{ client.bornDate | date }}</td>
+    <td>{{ client.phoneNumber }}</td>
+    <td>{{ client.email }}</td>
+    <td>{{ client.has10PercentDiscount | currency:'USD':'symbol':'1.2-2'}}</td>
+  </tr>
+  </tbody>
+</table>

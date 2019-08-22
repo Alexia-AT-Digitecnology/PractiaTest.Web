@@ -27,6 +27,8 @@ import { InvoiceViewerComponent } from './invoice-viewer/invoice-viewer.componen
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'clients-list', component: ClientsListComponent },
+      { path: 'client-viewer/:id', component: ClientViewerComponent },
+      { path: 'invoice-viewer/:id', component: InvoiceViewerComponent },
     ])
   ],
   providers: [],

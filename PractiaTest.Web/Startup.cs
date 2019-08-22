@@ -42,6 +42,17 @@ namespace PractiaTest.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            
+            services.AddCors(options =>
+            {
+                options.AddPolicy("myCORS",
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:5000")
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                    });
+            });
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/dist"; });
@@ -63,6 +74,8 @@ namespace PractiaTest.Web
             {
                 app.UseHsts();
             }
+
+            app.UseCors("myCORS");
             
             app.UseStaticFiles();
             app.UseSpaStaticFiles();

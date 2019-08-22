@@ -54,14 +54,17 @@
       <TypeScriptCompile Include="ClientApp\src\app\client-viewer\client-viewer.component.ts" />
       <TypeScriptCompile Include="ClientApp\src\app\clients-list\clients-list.component.spec.ts" />
       <TypeScriptCompile Include="ClientApp\src\app\clients-list\clients-list.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\interfaces\client.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\interfaces\completeclient.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\interfaces\completeinvoice.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\interfaces\invoice.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\interfaces\invoicedetail.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\interfaces\product.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\interfaces\results.ts" />
       <TypeScriptCompile Include="ClientApp\src\app\invoice-viewer\invoice-viewer.component.spec.ts" />
       <TypeScriptCompile Include="ClientApp\src\app\invoice-viewer\invoice-viewer.component.ts" />
       <TypeScriptCompile Include="ClientApp\src\app\services\apiservice.service.spec.ts" />
       <TypeScriptCompile Include="ClientApp\src\app\services\apiservice.service.ts" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="ClientApp\src\app\interfaces" />
     </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

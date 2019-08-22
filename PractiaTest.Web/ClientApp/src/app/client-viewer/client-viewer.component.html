@@ -1,3 +1,46 @@
-<p>
-  client-viewer works!
-</p>
+<h1>Client Page</h1>
+<p *ngIf="!client"><em>{{ connectionStatus }}</em></p>
+
+<div *ngIf="client">
+  <p class="font-weight-bold">Client name: {{ client.name }}</p>
+  <p class="font-weight-bold">Client address: {{ client.address }}</p>
+  <p class="font-weight-bold">Client born date: {{ client.bornDate | date }}</p>
+  <p class="font-weight-bold">Client phone number: {{ client.phoneNumber }}</p>
+  <p class="font-weight-bold">Client email: {{ client.email }}</p>
+
+  <div class="alert alert-dismissible alert-success" *ngIf="client.has10PercentDiscount > 0">
+    <h4 class="alert-heading">¡¡You have a 10% Discount!!</h4>
+    <p class="mb-0"> You will have a discount of {{ client.has10PercentDiscount | currency:'USD':'symbol':'1.2-2' }} in future purchases.</p>
+  </div>
+
+  <div class="alert alert-dismissible alert-danger" *ngIf="client.has10PercentDiscount == 0">
+    <h4 class="alert-heading">¡¡You DON'T have any discount!!</h4>
+    <p class="mb-0"> Sorry, but you have dont any discount, you are losing money.</p>
+  </div>
+
+  <h2>Invoices</h2>
+
+  <table class='table table-striped'>
+    <thead>
+    <tr>
+      <th>Issue date</th>
+      <th>Paid</th>
+      <th>Total</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let invoice of client.invoices">
+      <td><a [routerLink]="['/invoice-viewer', invoice.id]">{{ invoice.issueDate | date }}</a></td>
+      <td>{{ invoice.paid ? 'Yes' : 'No' }}</td>
+      <td>{{ invoice.total | currency:'USD':'symbol':'1.2-2' }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div class='card-footer'>
+  <button class='btn btn-outline-secondary'
+          (click)='onBack()'
+          style='width:80px'>
+    <i class='fa fa-chevron-left'></i> Back
+  </button>
+</div>
